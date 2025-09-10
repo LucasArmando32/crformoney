@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -9,6 +9,16 @@ def home():
 @app.route("/about")
 def about():
     return render_template('about.html')
+
+@app.route("/play")
+def play():
+    return render_template('play.html')
+
+@app.route("/dates")
+def dates():
+    player = request.args.get("player")  # Spieler aus dem Button
+    return render_template('dates.html', player=player)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
