@@ -1,0 +1,39 @@
+/* ===== Clash Royale Look & Feel ===== */
+:root{
+    --royal-900:#0b1736;
+    --royal-700:#142a62;
+    --royal-500:#1e49a3;
+    --royal-300:#3f78ff;
+    --gold-400:#ffd76a;
+    --gold-500:#ffbe2e;
+    --gold-600:#ff9f1c;
+  }
+  
+  /* Seite / Hintergrund */
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+    color:#e9f0ff;
+    background:
+      radial-gradient(1600px 700px at 80% -20%, rgba(63,120,255,.20), transparent 60%),
+      radial-gradient(1400px 900px at -10% 110%, rgba(21,62,149,.28), transparent 60%),
+      linear-gradient(160deg, var(--royal-700) 0%, var(--royal-900) 60%);
+  }
+  
+  /* dezentes Kronen-Muster über dem Body */
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; opacity:.12;
+    background-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='28' height='20' viewBox='0 0 28 20'>\
+    <rect width='28' height='20' fill='none'/>\
+    <polygon points='2,18 6,8 10,14 14,6 18,14 22,8 26,18 2,18' fill='%23ffd76a'/>\
+  </svg>");
+    background-size:52px 36px;
+    background-repeat:repeat;
+    mix-blend-mode:soft-light;
+  }
+  
+  /* Co*
+  
