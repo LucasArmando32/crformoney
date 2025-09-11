@@ -1,8 +1,16 @@
+
 {% extends "layout.html" %}
 
 {% block title %}Home{% endblock title%}
 
 {% block content %}
   <h1>Home</h1>
-  <p>Win money playing clash royale</p>
+  <p>Win money playing Clash Royale</p>
+
+  <p>
+    <a href="{{ url_for('consent') }}"
+       style="display:inline-block;padding:10px 16px;border-radius:8px;background:#111;color:#fff;text-decoration:none;">
+      Play
+    </a>
+  </p>
 {% endblock content%}

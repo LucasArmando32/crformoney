@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Consent{% endblock %}
+{% block content %}
+<h1>Consent & Risk Acknowledgment</h1>
+
+<p><strong>Participant Consent (Skill-Based Match)</strong></p>
+<ul>
+  <li>This is a <strong>skill-based</strong> head-to-head match. No element of chance is built into the rules.</li>
+  <li>I understand that I can <strong>lose money</strong> in this activity (e.g., entry fee/donation) and may receive no prize.</li>
+  <li>No profit or winnings are guaranteed; results depend solely on in-game performance.</li>
+  <li>I participate voluntarily and without relying on promises of outcomes.</li>
+  <li>Payments are non-refundable except where required by law.</li>
+  <li>I agree to the Terms of Service and Privacy Policy and will comply with applicable laws.</li>
+</ul>
+
+  <p>
+    <p style="margin-top:24px">
+        <a href="{{ url_for('dates') }}"
+       style="display:inline-block;margin-left:40px; padding:10px 16px;border-radius:8px;background:#111;color:#fff;text-decoration:none;">
+      I agree
+    </a>
+  </p>
+  
+
+{% endblock %}

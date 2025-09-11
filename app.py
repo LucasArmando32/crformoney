@@ -24,6 +24,12 @@ def payment():
     player = request.args.get("player")
     return render_template("pay.html", player=player)
 
+@app.route("/consent")
+def consent():
+    return render_template('consent.html')
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
