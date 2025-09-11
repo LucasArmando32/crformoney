@@ -8,7 +8,18 @@
     --gold-500:#ffbe2e;
     --gold-600:#ff9f1c;
   }
-  
+
+  .sponsor-badge{
+    position: fixed;
+    left: 14px;
+    right: auto;
+    bottom: 14px;
+    z-index: 999;           /* unter deinem Musik-Button (der hat 9999) */
+  }
+  .sponsor-badge img{
+    height: auto;            /* sehr klein */
+    width: 222px;
+  }
   /* Seite / Hintergrund */
   html,body{height:100%}
   body{
@@ -34,6 +45,8 @@
     background-repeat:repeat;
     mix-blend-mode:soft-light;
   }
+
+  
   
   /* Co*
   
