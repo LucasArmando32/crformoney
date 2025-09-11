@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %} Payment {% endblock title%}
+
+
+{% block content %}
+  <h1>Payment</h1>
+  <p>With Twint: 078 219 78 49</p>
+
+  <form action="{{ url_for('home') }}" method="get" style="margin-top:20px;">
+    <button type="submit">Payment Done</button>
+  </form>
+  
+
+{% endblock content%}

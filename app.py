@@ -19,6 +19,11 @@ def dates():
     player = request.args.get("player")  # Spieler aus dem Button
     return render_template('dates.html', player=player)
 
+@app.route("/payment")
+def payment():
+    player = request.args.get("player")
+    return render_template("pay.html", player=player)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
