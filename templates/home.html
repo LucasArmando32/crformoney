@@ -4,122 +4,140 @@
 
 <style>
   :root{
-    --royal-900:#0b1736;
-    --royal-700:#142a62;
-    --royal-500:#1e49a3;
-    --royal-300:#3f78ff;
-    --gold-400:#ffd76a;
-    --gold-500:#ffbe2e;
-    --gold-600:#ff9f1c;
-    --stone:#0c1120;
+    --royal-900:#0b1736; --royal-800:#0f1f47; --royal-700:#142a62;
+    --royal-500:#1e49a3; --royal-300:#3f78ff;
+    --gold-300:#ffe6a3; --gold-400:#ffd76a; --gold-500:#ffbe2e; --gold-600:#ff9f1c;
+    --glass: rgba(255,255,255,.06);
   }
+
+  .royale-wrap{ position:relative; margin-top:6px }
+  /* Subtle moving sparkles */
+  .sparkles{ pointer-events:none; position:absolute; inset:0; overflow:hidden; }
+  .sparkles i{
+    position:absolute; width:8px; height:8px; border-radius:50%;
+    background: radial-gradient(circle, rgba(255,255,255,.9), rgba(255,255,255,0) 70%);
+    opacity:.25; animation: float 12s linear infinite;
+  }
+  .sparkles i:nth-child(odd){ width:10px; height:10px; animation-duration:16s; opacity:.18 }
+  @keyframes float{ from{ transform:translateY(20vh)} to{ transform:translateY(-120vh)} }
 
   /* HERO */
   .royale-hero{
-    position:relative;
-    padding:48px 28px 56px;
-    border-radius:24px;
+    position:relative; padding:56px 28px 64px; border-radius:24px; color:#fff; overflow:hidden;
     background:
       radial-gradient(1200px 500px at 80% -20%, rgba(63,120,255,.35), transparent 60%),
       linear-gradient(160deg, var(--royal-700), var(--royal-900) 60%);
-    color:#fff;
     box-shadow: 0 20px 50px rgba(10,20,40,.45), inset 0 0 0 2px rgba(255,255,255,.05);
-    overflow:hidden;
   }
   .royale-hero:before{
-    content:"";
-    position:absolute; inset:-40px;
-    background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 16px, transparent 16px 32px);
-    pointer-events:none;
+    content:""; position:absolute; inset:-40px;
+    background: repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 16px, transparent 16px 32px);
+  }
+  .hero-top{
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
   }
   .hero-badge{
     display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,215,106,.12);
-    border:1px solid rgba(255,215,106,.35);
-    color:var(--gold-400);
-    padding:6px 10px; border-radius:999px; font-weight:600; letter-spacing:.2px;
+    background:rgba(255,215,106,.12); border:1px solid rgba(255,215,106,.35);
+    color:var(--gold-400); padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.2px;
   }
-  .hero-title{
-    font-size: clamp(28px, 4vw, 44px);
-    line-height:1.05; margin:14px 0 8px; font-weight:800; letter-spacing:.3px;
-    text-shadow:0 6px 18px rgba(0,0,0,.45);
-  }
-  .hero-sub{color:#d9e1ff; max-width:720px; font-size:clamp(15px, 2vw, 18px); opacity:.95}
+  .hero-title{ font-size:clamp(28px,4vw,46px); line-height:1.05; margin:14px 0 8px; font-weight:800;
+               text-shadow:0 6px 18px rgba(0,0,0,.45)}
+  .hero-sub{ color:#d9e1ff; max-width:780px; font-size:clamp(15px,2vw,18px); opacity:.95 }
 
-  /* CTA Button */
+  /* Stats row */
+  .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-top:18px }
+  .stat{
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:10px 12px; color:#fff;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+  }
+  .stat b{ font-size:18px }
+  .stat small{ display:block; color:#bcd1ff }
+
+  /* CTA */
   .btn-royale{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 22px;
-    border-radius:14px;
-    font-weight:800; letter-spacing:.3px; text-transform:uppercase;
-    color:#221605; text-decoration:none;
-    background: linear-gradient(180deg, var(--gold-400), var(--gold-600));
-    box-shadow:
-      0 10px 18px rgba(255,190,46,.35),
-      inset 0 2px 0 rgba(255,255,255,.6),
-      inset 0 -3px 0 rgba(0,0,0,.15);
+    display:inline-block; margin-top:20px; padding:12px 22px; border-radius:14px;
+    font-weight:800; letter-spacing:.3px; text-transform:uppercase; text-decoration:none; color:#221605;
+    background:linear-gradient(180deg, var(--gold-400), var(--gold-600));
+    box-shadow:0 10px 18px rgba(255,190,46,.35), inset 0 2px 0 rgba(255,255,255,.6), inset 0 -3px 0 rgba(0,0,0,.15);
     position:relative; overflow:hidden;
   }
-  .btn-royale:after{
-    content:""; position:absolute; inset:0;
-    background: linear-gradient(120deg, rgba(255,255,255,.0) 0%, rgba(255,255,255,.35) 30%, rgba(255,255,255,0) 60%);
-    transform:skewX(-20deg) translateX(-120%);
-    animation: shine 2.2s infinite ease-in-out;
-    pointer-events:none;
+  .btn-royale:after{ content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.35) 30%, rgba(255,255,255,0) 60%);
+    transform:skewX(-20deg) translateX(-120%); animation:shine 2.2s infinite ease-in-out;
   }
-  @keyframes shine { to { transform:skewX(-20deg) translateX(140%); } }
+  @keyframes shine { to{ transform:skewX(-20deg) translateX(140%) } }
 
-  /* STEP TILES */
-  .tiles{
-    margin:28px 0 10px;
-    display:grid; gap:16px;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  }
+  /* Step tiles */
+  .tiles{ margin:28px 0 10px; display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
   .tile{
-    background:linear-gradient(180deg, #0f1b3a, #0b1327);
-    border:1px solid rgba(255,255,255,.06);
+    background:linear-gradient(180deg, #0f1b3a, #0b1327); border:1px solid rgba(255,255,255,.06);
     border-radius:18px; padding:18px 16px; color:#eef3ff;
-    box-shadow: 0 8px 18px rgba(10,20,40,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+    box-shadow:0 8px 18px rgba(10,20,40,.35), inset 0 0 0 1px rgba(255,255,255,.04);
   }
-  .tile h4{ margin:0 0 6px; font-weight:800; letter-spacing:.2px; color:#ffffff}
-  .num{
-    display:inline-grid; place-items:center;
-    width:28px; height:28px; border-radius:8px; margin-right:8px;
-    background:linear-gradient(180deg, var(--royal-300), var(--royal-500));
-    color:#fff; font-weight:900; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15);
-  }
+  .tile h4{ margin:0 0 6px; font-weight:800; letter-spacing:.2px; color:#fff }
+  .num{ display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; margin-right:8px;
+        background:linear-gradient(180deg, var(--royal-300), var(--royal-500)); color:#fff; font-weight:900;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.15) }
 
-  /* RULES / PAYOUT */
-  .rules{
-    margin-top:20px; padding:16px;
-    background: linear-gradient(180deg, #0f1528, #0c1222);
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,.08);
-    color:#cfe0ff;
-  }
-  .rules h3{ margin:0 0 8px; color:#fff; font-weight:800 }
-  .rules ul{ margin:8px 0 0 20px }
-  .rules li{ margin:6px 0 }
+  /* Rules + calculator */
+  .rules{ margin-top:20px; padding:18px; background:linear-gradient(180deg, #0f1528, #0c1222);
+          border-radius:18px; border:1px solid rgba(255,255,255,.08); color:#cfe0ff }
+  .rules h3{ margin:0 0 10px; color:#fff; font-weight:800 }
+  .rules ul{ margin:8px 0 0 20px } .rules li{ margin:6px 0 }
   .muted{ color:#9fb3ff; font-size:.92rem }
 
-  /* spacing inside bootstrap .container */
-  .royale-wrap{ margin-top:6px }
+  .calc{
+    margin-top:14px; padding:14px; border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.08); color:#eaf1ff; display:grid; gap:10px;
+  }
+  .calc-row{ display:flex; align-items:center; gap:12px; flex-wrap:wrap }
+  .pill{ display:inline-block; padding:6px 10px; border-radius:999px;
+         background:rgba(255,215,106,.14); border:1px solid rgba(255,215,106,.35); color:var(--gold-300); font-weight:700 }
+  .out{ display:flex; gap:12px; flex-wrap:wrap }
+  .out b{ color:#fff }
+  input[type="range"]{ width:220px }
+
+  /* Sponsor */
+  .sponsor-badge{ position:fixed; left:16px; bottom:16px; z-index:50 }
+  .sponsor-badge img{ height:44px; opacity:.9; filter:drop-shadow(0 6px 12px rgba(0,0,0,.45)) }
+  @media (max-width:700px){ .sponsor-badge img{ height:36px } }
 </style>
 
 <div class="royale-wrap">
+  <!-- floating sparkles -->
+  <div class="sparkles" aria-hidden="true">
+    <i style="left:10%; animation-delay:-2s"></i>
+    <i style="left:30%; animation-delay:-6s"></i>
+    <i style="left:55%; animation-delay:-9s"></i>
+    <i style="left:75%; animation-delay:-4s"></i>
+    <i style="left:90%; animation-delay:-12s"></i>
+  </div>
 
+  <!-- HERO -->
   <section class="royale-hero">
-    <span class="hero-badge">🛡️ Skill-Based • Not Gambling</span>
+    <div class="hero-top">
+      <span class="hero-badge">🛡️ Skill-Based • Not Gambling</span>
+    </div>
+
     <h1 class="hero-title">Make money by playing Clash Royale</h1>
     <p class="hero-sub">
       Play <em>skill-based</em> 1v1 matches. Pick your opponent, book a time, pay the entry,
       and battle. If you win, you get the payout—lose and there’s no payout.
     </p>
+
+    <div class="stats">
+      <div class="stat"><b>2–5 CHF</b> <small>Entry per match</small></div>
+      <div class="stat"><b>+75%</b> <small>Return on win</small></div>
+      <div class="stat"><b>0%</b> <small>Chance elements</small></div>
+    </div>
+
     <a href="{{ url_for('play') }}" class="btn-royale">Play Now</a>
   </section>
 
+  <!-- Steps -->
   <section class="tiles">
     <div class="tile">
       <h4><span class="num">1</span>Choose opponent</h4>
@@ -139,6 +157,7 @@
     </div>
   </section>
 
+  <!-- Rules + Calculator -->
   <section class="rules">
     <h3>How it works</h3>
     <ul>
@@ -147,9 +166,24 @@
       <li>If you <strong>lose</strong>, you lose your full entry.</li>
       <li>Limit: <strong>3 matches per day</strong> per player.</li>
     </ul>
-    <p class="muted">Examples: 2 CHF → 3.50 CHF if you win; 3 CHF → 5.25 CHF; 5 CHF → 8.75 CHF.</p>
+
+    <!-- Mini calculator -->
+    <div class="calc">
+      <div class="calc-row">
+        <span class="pill">Quick calculator</span>
+        <label for="entry" style="color:#cfe0ff">Entry</label>
+        <input id="entry" type="range" min="2" max="5" step="0.5" value="3" />
+        <span id="entryVal" class="pill">3.00 CHF</span>
+      </div>
+      <div class="out">
+        <div>Payout on win: <b id="payout">5.25 CHF</b></div>
+        <div>Net profit: <b id="profit">+2.25 CHF</b></div>
+      </div>
+      <p class="muted">Examples: 2 CHF → 3.50 CHF; 3 CHF → 5.25 CHF; 5 CHF → 8.75 CHF.</p>
+    </div>
   </section>
 
+  <!-- Sponsor -->
   <div class="sponsor-badge">
     <a href="https://www.moha-schneiderei.ch/" target="_blank" rel="noopener">
       <img src="{{ url_for('static', filename='images/Mohaschneiderei.png') }}" alt="Sponsor">
@@ -157,5 +191,23 @@
   </div>
 </div>
 
+<script>
+  // Payout calculator
+  (function(){
+    const r = document.getElementById('entry');
+    const v = document.getElementById('entryVal');
+    const p = document.getElementById('payout');
+    const n = document.getElementById('profit');
+    const fmt = x => (Math.round(x*100)/100).toFixed(2) + ' CHF';
+    const upd = () => {
+      const entry = parseFloat(r.value);
+      const payout = entry * 1.75;
+      v.textContent = fmt(entry);
+      p.textContent = fmt(payout);
+      n.textContent = (payout-entry>=0?'+':'') + fmt(payout - entry);
+    };
+    r.addEventListener('input', upd); upd();
+  })();
+</script>
 
 {% endblock %}
