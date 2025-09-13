@@ -31,7 +31,40 @@
       radial-gradient(1400px 900px at -10% 110%, rgba(21,62,149,.28), transparent 60%),
       linear-gradient(160deg, var(--royal-700) 0%, var(--royal-900) 60%);
   }
+  .donation-wrap{
+    margin-top:22px; padding:18px;
+    background:linear-gradient(180deg,#0e1530,#0b1226);
+    border-radius:18px; border:1px solid rgba(255,255,255,.08); color:#cfe0ff;
+  }
+  .donation-header h3{ margin:0 0 6px; color:#fff; font-weight:800 }
+  .donation-header p{ margin:0 0 12px; color:#aecdff }
   
+  .donation-grid{
+    display:grid; gap:14px;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  }
+  
+  .donation-card{
+    background:linear-gradient(180deg,#101b3b,#0b1327);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:14px; padding:14px;
+    box-shadow: 0 8px 18px rgba(10,20,40,.25), inset 0 0 0 1px rgba(255,255,255,.04);
+  }
+  .donation-card h4{ margin:0 0 6px; color:#fff; font-weight:800 }
+  
+  .donation-stat{
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+    gap:8px; padding:14px; border-radius:14px;
+    background:radial-gradient(600px 200px at 100% -40%, rgba(63,120,255,.25), transparent 60%),
+               linear-gradient(180deg,#0e1a3a,#0a1228);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .stat-label{ font-size:.9rem; color:#9fb3ff }
+  .stat-value{ font-size:1.6rem; font-weight:900; color:#fff; letter-spacing:.5px }
+  
+  .btn-compact{ padding:10px 16px; border-radius:12px; font-size:.9rem }
+  
+
   /* dezentes Kronen-Muster über dem Body */
   body::before{
     content:"";

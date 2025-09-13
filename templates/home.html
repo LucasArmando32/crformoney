@@ -87,6 +87,8 @@
   .rules h3{ margin:0 0 10px; color:#fff; font-weight:800 }
   .rules ul{ margin:8px 0 0 20px } .rules li{ margin:6px 0 }
   .muted{ color:#9fb3ff; font-size:.92rem }
+  
+  
 
   .calc{
     margin-top:14px; padding:14px; border-radius:14px;
@@ -101,7 +103,7 @@
   input[type="range"]{ width:220px }
 
   /* Sponsor */
-  .sponsor-badge{ position:fixed; left:16px; bottom:16px; z-index:50 }
+  .sponsor-badge{ position:fixed; left:1480px; bottom:16px; z-index:50 }
   .sponsor-badge img{ height:44px; opacity:.9; filter:drop-shadow(0 6px 12px rgba(0,0,0,.45)) }
   @media (max-width:700px){ .sponsor-badge img{ height:36px } }
 </style>
@@ -159,6 +161,7 @@
 
   <!-- Rules + Calculator -->
   <section class="rules">
+    
     <h3>How it works</h3>
     <ul>
       <li>Choose an entry between <strong>2–5 CHF</strong> per match.</li>
@@ -166,6 +169,35 @@
       <li>If you <strong>lose</strong>, you lose your full entry.</li>
       <li>Limit: <strong>3 matches per day</strong> per player.</li>
     </ul>
+
+ <!-- DONATIONS BLOCK -->
+<section class="donation-wrap">
+  <div class="donation-header">
+    <h3>Donations & Funding</h3>
+    <p>50% of the proceeds go to
+      <a href="https://kinderwerk-lima.ch/" target="_blank" rel="noopener">Kinderwerk Lima</a>,
+      and 50% cover the site’s maintenance & operations.</p>
+  </div>
+
+
+
+  <div class="donation-grid">
+    <div class="donation-card">
+      <h4>Charity (50%)</h4>
+      <p>Supports projects in Peru (Kinderwerk Lima: https://kinderwerk-lima.ch/) focused on children—education, basic care, and safe spaces for vulnerable kids.</p>
+    </div>
+    <div class="donation-card">
+      <h4>Maintenance (50%)</h4>
+      <p>Servers, domains, security, ongoing development.</p>
+    </div>
+    <div class="donation-stat">
+      <div class="stat-label">Live total donated</div>
+      <div class="stat-value">CHF <span id="donationCounter">{{ '%.2f'|format(total_chf) }}</span></div>
+    </div>
+  </div>
+
+</section>
+
 
     <!-- Mini calculator -->
     <div class="calc">

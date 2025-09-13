@@ -2,9 +2,11 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+TOTAL_DONATION_CHF=20
+
 @app.route("/")
 def home():
-    return render_template('home.html')
+    return render_template('home.html',total_chf=TOTAL_DONATION_CHF)
 
 @app.route("/about")
 def about():
@@ -27,6 +29,12 @@ def payment():
 @app.route("/consent")
 def consent():
     return render_template('consent.html')
+
+@app.route("/donations")
+def donations():
+
+    return render_template("donations.html", total_chf=TOTAL_DONATION_CHF)
+
 
 
 
