@@ -38,12 +38,15 @@ def donations():
 
     return render_template("donations.html", total_chf=TOTAL_DONATION_CHF)
 
+
+
 @app.before_request
-def redirect_to_www():
-    if request.host == "crformoney.com":
-        # request.full_path endet mit "?" wenn kein Query -> sauber machen
-        path = request.full_path[:-1] if request.full_path.endswith("?") else request.full_path
+def redirect_root_to_www():
+    host = request.host.split(':')[0].lower()
+    if host == 'crformoney.com':
+        path = request.full_path[:-1] if request.full_path.endswith('?') else request.full_path
         return redirect(f"https://www.crformoney.com{path}", code=301)
+
 
 
 if __name__ == "__main__":
