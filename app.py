@@ -42,6 +42,11 @@ def donations():
 def force_https():
     if request.headers.get('X-Forwarded-Proto', 'http') != 'https':
         return redirect(request.url.replace('http://', 'https://', 1), code=301)
+    
+@app.before_request
+def canonical_host():
+    if request.headers.get('Host', '').lower() == 'crformoney.com':
+        return redirect('https://www.crformoney.com' + request.full_path, code=301)
 
 
 if __name__ == "__main__":
