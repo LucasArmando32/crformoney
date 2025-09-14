@@ -40,11 +40,22 @@ def donations():
 
 
 
+from flask import request, redirect
+
 @app.before_request
-def redirect_root_to_www():
-    host = request.host.split(':')[0].lower()
+def canonicalize_host_and_scheme():
+    host = request.host.split(':', 1)[0].lower()
+    # Pfad inkl. Query beibehalten (ohne nacktes '?')
+    path = request.full_path[:-1] if request.full_path.endswith('?') else request.full_path
+    # Upstream-Scheme (Render/Proxy) respektieren
+    scheme = request.headers.get('X-Forwarded-Proto', 'http')
+
+    # 1) Root-Domain -> immer auf www weiterleiten, Scheme beibehalten (kein extra HTTPS)
     if host == 'crformoney.com':
-        path = request.full_path[:-1] if request.full_path.endswith('?') else request.full_path
+        return redirect(f"{scheme}://www.crformoney.com{path}", code=301)
+
+    # 2) www-Host -> immer HTTPS erzwingen
+    if host == 'www.crformoney.com' and scheme != 'https':
         return redirect(f"https://www.crformoney.com{path}", code=301)
 
 
