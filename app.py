@@ -1,8 +1,14 @@
+import os
 from flask import Flask, render_template, request, redirect
 from werkzeug.middleware.proxy_fix import ProxyFix
 
+
+
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+app.config["PAYPAL_CLIENT_ID"] = os.getenv("PAYPAL_CLIENT_ID")  # in .env setzen
+app.config["PAYPAL_CLIENT_SECRET"] = os.getenv("PAYPAL_CLIENT_SECRET")
+
 
 
 TOTAL_DONATION_CHF=20
@@ -27,7 +33,11 @@ def dates():
 @app.route("/payment")
 def payment():
     player = request.args.get("player")
-    return render_template("pay.html", player=player)
+    return render_template(
+        "pay.html",
+        player=player,
+        paypal_client_id=app.config["PAYPAL_CLIENT_ID"]
+    )
 
 @app.route("/consent")
 def consent():
