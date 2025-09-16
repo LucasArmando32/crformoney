@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect
 from werkzeug.middleware.proxy_fix import ProxyFix
+from dotenv import load_dotenv; load_dotenv()
 
 
 

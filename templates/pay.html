@@ -13,13 +13,24 @@
   </ul>
 
   <h2>With Twint: 076 532 73 56</h2>
-
+  
   <h2>With PayPal:</h2>
-  <div id="paypal-button-container"></div>
+<div id="paypal-button-container"></div>
 
-  <!-- Deine Client-ID kommt aus Flask als Variable paypal_client_id -->
-  <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=CHF"></script>
-  <script>
+<!-- SDK EINMAL laden -->
+<script
+  src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=CHF&debug=true"
+  data-sdk-integration-source="crformoney"
+  defer>
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    console.log("PAYPAL_CLIENT_ID:", "{{ paypal_client_id|e }}");
+    if (!window.paypal) {
+      console.error("PayPal SDK not loaded.");
+      return;
+    }
     paypal.Buttons({
       createOrder: function (data, actions) {
         return actions.order.create({
@@ -31,9 +42,20 @@
           alert('Payment completed by ' + details.payer.name.given_name);
           window.location.href = "{{ url_for('home') }}";
         });
+      },
+      onError: function (err) {
+        console.error("PayPal onError:", err);
+        alert("PayPal error. Check console/network logs.");
       }
     }).render('#paypal-button-container');
-  </script>
+  });
+</script>
+
+{% if not paypal_client_id %}
+  <p style="color:red">Server misconfigured: PAYPAL_CLIENT_ID is missing on production.</p>
+{% endif %}
+
+  
 
   <p style="font-size:.95em;color:#555;">
     Examples: 2 CHF → 3.50 CHF if you win; 3 CHF → 5.25 CHF; 5 CHF → 8.75 CHF.
